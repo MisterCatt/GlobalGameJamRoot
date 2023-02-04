@@ -46,6 +46,20 @@ public class LineManager : MonoBehaviour
         {
             Destroy(go);
         }
+
+        for (var i = birdLines.Count - 1; i > -1; i--)
+        {
+            if (birdLines[i] == null)
+                birdLines.RemoveAt(i);
+        }
+
+        for (var i = frogLines.Count - 1; i > -1; i--)
+        {
+            if (frogLines[i] == null)
+                frogLines.RemoveAt(i);
+        }
+
+        inactiveLines.Clear();
     }
 
 }

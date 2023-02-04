@@ -83,6 +83,9 @@ public class PlayerLine : MonoBehaviour
 
         if (Input.GetKeyUp(keyCode))
         {
+            if (!lineObject)
+                return;
+
             if (magnitude < 1)
             {
                 lineObject.SetActive(false);
