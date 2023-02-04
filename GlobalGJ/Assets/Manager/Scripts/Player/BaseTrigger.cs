@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BaseTrigger : MonoBehaviour
 {
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "FrogPlayer")
@@ -12,7 +11,7 @@ public class BaseTrigger : MonoBehaviour
             PlayerManager.instance.frogInBase = true;
             PlayerManager.instance.frogCanDraw = true;
 
-            PlayerManager.instance.pointMultiplier = 2;
+            BeatScroller.frogInBasE = true;
         }
 
         if(collision.tag == "BirdPlayer")
@@ -20,7 +19,7 @@ public class BaseTrigger : MonoBehaviour
             PlayerManager.instance.birdInBase = true;
             PlayerManager.instance.birdCanDraw = true;
 
-            PlayerManager.instance.pointMultiplier = 2;
+            BeatScroller.birdInBasE = true;
         }
     }
 
@@ -30,12 +29,16 @@ public class BaseTrigger : MonoBehaviour
         {
             PlayerManager.instance.frogInBase = false;
             PlayerManager.instance.frogCanDraw = false;
+
+            BeatScroller.frogInBasE = false;
         }
 
         if (collision.tag == "BirdPlayer")
         {
             PlayerManager.instance.birdInBase = false;
             PlayerManager.instance.birdCanDraw = false;
+
+            BeatScroller.birdInBasE = false;
         }
     }
 }
