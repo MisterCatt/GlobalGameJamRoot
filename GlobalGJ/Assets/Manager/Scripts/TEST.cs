@@ -67,6 +67,9 @@ public class TEST : MonoBehaviour
             line.AddComponent<LineRenderer>();
 
             startPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            
+            
             line.GetComponent<LineRenderer>().SetPosition(0, new Vector3 (startPos.x, startPos.y, 0));
             lineObject = line;
             isDrawing = true;
@@ -80,12 +83,35 @@ public class TEST : MonoBehaviour
                 Debug.Log(drawPos.y);
             }
 
-            lineObject.GetComponent<LineRenderer>().SetPosition(1, new Vector3(drawPos.x, drawPos.y, 0));
+            float magnitude = Mathf.Sqrt(Mathf.Pow(drawPos.x - startPos.x, 2) + Mathf.Pow(drawPos.y - startPos.y, 2));
+            Vector2 norm = drawPos.normalized;
+
+            Debug.Log(magnitude);
+
+
+            //Get the direction of the line
+            Vector3 direction = drawPos - startPos;
+            //Get a new point at your distance from point A
+            if(magnitude > 10)
+                magnitude = 10;
+            Vector3 point_C = startPos + (direction.normalized * magnitude);
+            //Draw the line
+            Debug.DrawLine(startPos, point_C);
+
+            lineObject.GetComponent<LineRenderer>().SetPosition(1, new Vector3(point_C.x,point_C.y,0));
+
+            //if(magnitude < 3)
+            //lineObject.GetComponent<LineRenderer>().SetPosition(1, new Vector3(drawPos.x, drawPos.y, 0));
         }
 
         if (Input.GetMouseButtonUp(0))
         {
             isDrawing = false;
         }
+    }
+
+    Vector3 DirectionToPoint(Vector3 startingVector, Vector3 endVector)
+    {
+        return -(startingVector - endVector).normalized;
     }
 }
