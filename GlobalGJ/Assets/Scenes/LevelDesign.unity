@@ -473,7 +473,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1053130970868534583, guid: be16b530cd281c64bb2fe97e1f0d2e0c, type: 3}
       propertyPath: linePointMultiplier
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1053130970868534583, guid: be16b530cd281c64bb2fe97e1f0d2e0c, type: 3}
       propertyPath: PlayerPrefabs.Array.data[0]
