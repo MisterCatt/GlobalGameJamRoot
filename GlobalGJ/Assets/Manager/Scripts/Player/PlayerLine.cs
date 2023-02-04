@@ -19,14 +19,14 @@ public class PlayerLine : MonoBehaviour
     private void Update()
     {
         if (!pScript.player2)
-            DrawLine(KeyCode.Comma, 0);
+            DrawLine(KeyCode.Comma, 0, PlayerManager.instance.birdCanDraw, PlayerManager.instance.birdLinePoints);
         else
-            DrawLine(KeyCode.F, 1);
+            DrawLine(KeyCode.F, 1, PlayerManager.instance.frogCanDraw, PlayerManager.instance.frogLinePoints);
     }
 
-    void DrawLine(KeyCode keyCode, int _playerNumber)
+    void DrawLine(KeyCode keyCode, int _playerNumber, bool canDraw, float maxDistance)
     {
-        if (Input.GetKeyDown(keyCode))
+        if (Input.GetKeyDown(keyCode) && canDraw)
         {
             GameObject line = new GameObject();
             line.AddComponent<LineRenderer>();

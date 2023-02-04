@@ -23,25 +23,23 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // Gives a value between -1 and 1
 
         if (!pScript.player2)
         {
-            horizontal = Input.GetAxisRaw("P1_X"); // -1 is left
-            vertical = Input.GetAxisRaw("P1_Y"); // -1 is down
+            horizontal = Input.GetAxisRaw("P1_X");
+            vertical = Input.GetAxisRaw("P1_Y");
         }
         else
         {
-            horizontal = Input.GetAxisRaw("P2_X"); // -1 is left
+            horizontal = Input.GetAxisRaw("P2_X"); 
             vertical = Input.GetAxisRaw("P2_Y");
         }
     }
 
     void FixedUpdate()
     {
-        if (horizontal != 0 && vertical != 0) // Check for diagonal movement
+        if (horizontal != 0 && vertical != 0) 
         {
-            // limit movement speed diagonally, so you move at 70% speed
             horizontal *= moveLimiter;
             vertical *= moveLimiter;
         }
