@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Height
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3082415888663163849, guid: 57d6f618d5bfc2b4a9bc367900a23ee3, type: 3}
+      propertyPath: player2
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4072707904564578910, guid: 57d6f618d5bfc2b4a9bc367900a23ee3, type: 3}
       propertyPath: m_Name
       value: Frog_Player
