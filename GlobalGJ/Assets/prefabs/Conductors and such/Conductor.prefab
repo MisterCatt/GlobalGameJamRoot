@@ -248,9 +248,17 @@ PrefabInstance:
       propertyPath: notePrefab
       value: 
       objectReference: {fileID: 5451463572700935598}
+    - target: {fileID: 8389268777986201012, guid: 29e436f069f113541b1eb1e1403d9d3b, type: 3}
+      propertyPath: playerManager
+      value: 
+      objectReference: {fileID: 7933657950388262867, guid: be16b530cd281c64bb2fe97e1f0d2e0c, type: 3}
+    - target: {fileID: 8389268777986201012, guid: 29e436f069f113541b1eb1e1403d9d3b, type: 3}
+      propertyPath: tempoIncreaseAdjuster
+      value: 1.001
+      objectReference: {fileID: 0}
     - target: {fileID: 8389268777986201014, guid: 29e436f069f113541b1eb1e1403d9d3b, type: 3}
       propertyPath: m_Name
-      value: note
+      value: first
       objectReference: {fileID: 0}
     - target: {fileID: 8389268777986201015, guid: 29e436f069f113541b1eb1e1403d9d3b, type: 3}
       propertyPath: m_RootOrder

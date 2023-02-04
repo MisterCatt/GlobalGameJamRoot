@@ -41,19 +41,20 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        print(frogLinePoints);
+        print(birdLinePoints);
     }
 
     private void FixedUpdate()
     {
         if (frogInBase)
         {
-            frogLinePoints += linePointMultiplier;
+            //frogLinePoints += linePointMultiplier;
         }
 
         if (birdInBase)
         {
-            birdLinePoints += linePointMultiplier;
+            //birdLinePoints += linePointMultiplier;
         }
     }
 }

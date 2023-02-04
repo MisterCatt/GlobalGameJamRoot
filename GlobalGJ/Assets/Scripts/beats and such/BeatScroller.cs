@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class BeatScroller : MonoBehaviour
 {
+
     //do-stuff stuff
-    public AudioSource note;
     public float tempoIncreaseAdjuster;
     static int currentBeat = 1;
+
+    public static bool frogInBasE, birdInBasE; //i know, veri stuupid
+    public GameObject playerManager;
+
 
     public float BPM;
     float beatsPerSecond;
@@ -46,7 +50,16 @@ public class BeatScroller : MonoBehaviour
     public void DoStuffOnBeat()
     {
         currentBeat += 1;
-        print(currentBeat);
+
+        if(frogInBasE)
+        {
+            playerManager.GetComponent<PlayerManager>().frogLinePoints += playerManager.GetComponent<PlayerManager>().linePointMultiplier;
+        }
+
+        if (birdInBasE)
+        {
+            playerManager.GetComponent<PlayerManager>().birdLinePoints += playerManager.GetComponent<PlayerManager>().linePointMultiplier;
+        }
 
         //increase beat and song speed after 124 beats / 45-ish seconds
         if (currentBeat >= 70)
