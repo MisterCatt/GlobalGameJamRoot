@@ -7,15 +7,18 @@ public class PlayerLine : MonoBehaviour
     bool isDrawing = false;
     Player pScript;
 
-    float drawDistance = 0;
+    float drawDistance = 0,maxDistance, magnitude;
 
     GameObject lineObject;
     [SerializeField]
-    GameObject[] lines;
+    GameObject[] lines, checkPoints;
+
+    Vector3 startPos;
+    Vector3 point_C;
 
     private void Start()
     {
-        pScript = GetComponent<Player>();
+         pScript = GetComponent<Player>();
     }
 
     private void Update()
@@ -36,39 +39,77 @@ public class PlayerLine : MonoBehaviour
             line.GetComponent<LineRenderer>().startWidth = lines[_playerNumber].GetComponent<LineRenderer>().startWidth;
             line.GetComponent<LineRenderer>().material = lines[_playerNumber].GetComponent<LineRenderer>().sharedMaterial;
 
-            line.GetComponent<LineRenderer>().SetPosition(0, new Vector3(transform.position.x, transform.position.y, 0));
+            startPos = transform.position;
+
+            
+
+            if (_playerNumber == 0) {
+                maxDistance = PlayerManager.instance.birdLinePoints;
+                LineManager.instance.birdLines.Add(line);
+
+            }
+            else {
+                maxDistance = PlayerManager.instance.frogLinePoints;
+                LineManager.instance.frogLines.Add(line);
+            }
+
+            line.GetComponent<LineRenderer>().SetPosition(0, new Vector3(startPos.x, startPos.y, 0));
             lineObject = line;
             isDrawing = true;
         }
 
         if (isDrawing)
         {
+            //Get the direction of the line
+            Vector3 direction = transform.position - startPos;
+            magnitude = Mathf.Sqrt(Mathf.Pow(transform.position.x - startPos.x, 2) + Mathf.Pow(transform.position.y - startPos.y, 2));
+
+            if (magnitude > maxDistance)
+            {
+                magnitude = maxDistance;
+            }
+
+            //Get a new point at your distance from point A
+            point_C = startPos + (direction.normalized * magnitude);
+
             if (_playerNumber == 0) {
-                if (drawDistance < PlayerManager.instance.birdLinePoints)
-                {
-                    lineObject.GetComponent<LineRenderer>().SetPosition(1, new Vector3(transform.position.x, transform.position.y, 0));
-                    PlayerManager.instance.birdLinePoints -= PlayerManager.instance.linePointMultiplier;
-                }
+                    lineObject.GetComponent<LineRenderer>().SetPosition(1, new Vector3(point_C.x, point_C.y, 0));
             }
             else
             {
-                if (drawDistance < PlayerManager.instance.frogLinePoints)
-                {
-                    lineObject.GetComponent<LineRenderer>().SetPosition(1, new Vector3(transform.position.x, transform.position.y, 0));
-                    PlayerManager.instance.frogLinePoints -= PlayerManager.instance.linePointMultiplier;
-                }
+                lineObject.GetComponent<LineRenderer>().SetPosition(1, new Vector3(point_C.x, point_C.y, 0));
             }
         }
 
         if (Input.GetKeyUp(keyCode))
         {
+            if (magnitude < 1)
+            {
+                lineObject.SetActive(false);
+                
+                LineManager.instance.inactiveLines.Add(lineObject);
+                isDrawing = false;
+                return;
+            }
+
             if (_playerNumber == 0)
             {
-                PlayerManager.instance.birdLinePoints -= drawDistance;
+                
+                    PlayerManager.instance.birdLinePoints -= magnitude;
+
+                    GameObject temp = Instantiate(checkPoints[0]);
+                    temp.transform.parent = null;
+                    temp.transform.position = point_C;
             }
             else
             {
-                PlayerManager.instance.frogLinePoints -= drawDistance;
+                PlayerManager.instance.frogLinePoints -= magnitude;
+
+                    GameObject temp = Instantiate(checkPoints[1]);
+                    temp.transform.parent = null;
+                    temp.transform.position = point_C;
+                
+                
             }
 
             if(PlayerManager.instance.birdLinePoints < 0)
