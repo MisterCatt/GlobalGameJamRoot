@@ -4,7 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - conductor
+  - BirdHome
+  - FrogHome
+  - FrogPlayer
+  - BirdPlayer
   layers:
   - Default
   - TransparentFX
@@ -12,8 +15,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Player1
+  - Player2
   - 
   - 
   - 

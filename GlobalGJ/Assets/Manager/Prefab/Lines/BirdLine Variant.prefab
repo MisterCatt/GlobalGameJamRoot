@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7874640546775052311, guid: f49cc807aaf67344e8b8a1c1f5a38949, type: 3}
       propertyPath: m_Name
-      value: BirdLine
+      value: BirdLine Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7874640546775052312, guid: f49cc807aaf67344e8b8a1c1f5a38949, type: 3}
       propertyPath: m_RootOrder
@@ -54,6 +54,14 @@ PrefabInstance:
     - target: {fileID: 7874640546775052312, guid: f49cc807aaf67344e8b8a1c1f5a38949, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7874640546775052313, guid: f49cc807aaf67344e8b8a1c1f5a38949, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fa38fc7129f57d045b5ec58d0c845652, type: 2}
+    - target: {fileID: 7874640546775052313, guid: f49cc807aaf67344e8b8a1c1f5a38949, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.20133209
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f49cc807aaf67344e8b8a1c1f5a38949, type: 3}
