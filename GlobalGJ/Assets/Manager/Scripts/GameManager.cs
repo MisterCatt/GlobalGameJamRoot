@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
                 break;
             default:
                 break;
-
+                  
         }
         OnStateChange?.Invoke(_state);
     }

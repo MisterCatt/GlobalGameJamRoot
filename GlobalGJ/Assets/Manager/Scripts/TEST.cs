@@ -63,8 +63,12 @@ public class TEST : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            lineObject.GetComponent<LineRenderer>().SetPosition(0, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            GameObject line = new GameObject();
+            line.AddComponent<LineRenderer>();
 
+            startPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            line.GetComponent<LineRenderer>().SetPosition(0, new Vector3 (startPos.x, startPos.y, 0));
+            lineObject = line;
             isDrawing = true;
         }
 
@@ -76,7 +80,7 @@ public class TEST : MonoBehaviour
                 Debug.Log(drawPos.y);
             }
 
-            lineObject.GetComponent<LineRenderer>().SetPosition(1, new Vector3(startPos.x + drawPos.x, startPos.y + drawPos.y, 0));
+            lineObject.GetComponent<LineRenderer>().SetPosition(1, new Vector3(drawPos.x, drawPos.y, 0));
         }
 
         if (Input.GetMouseButtonUp(0))
