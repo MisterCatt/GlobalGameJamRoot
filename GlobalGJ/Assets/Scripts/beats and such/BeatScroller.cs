@@ -8,7 +8,7 @@ public class BeatScroller : MonoBehaviour
     static int currentBeat = 0;
     static int beatCount = 1;
 
-    public static bool frogInBasE, birdInBasE; //i know, veri stuupid
+    public static bool frogInBasE, birdInBasE, frogOutOfBasE, birdOutOfBasE; //i know, veri stuupid
     public GameObject playerManager;
 
     //music lists
@@ -137,6 +137,65 @@ public class BeatScroller : MonoBehaviour
                     break;
             } //depending on which beat we are on, a certain note plays
         }
+
+        if (frogOutOfBasE)
+        {
+            switch (currentBeat)
+            {
+                case 1:
+                    playerManager.GetComponent<PlayerManager>().frogLinePoints += playerManager.GetComponent<PlayerManager>().linePointMultiplier;
+                    frogNoteList[0].Play();
+                    break;
+
+                case 3:
+                    playerManager.GetComponent<PlayerManager>().frogLinePoints += playerManager.GetComponent<PlayerManager>().linePointMultiplier;
+                    frogNoteList[2].Play();
+                    break;
+
+                case 5:
+                    playerManager.GetComponent<PlayerManager>().frogLinePoints += playerManager.GetComponent<PlayerManager>().linePointMultiplier;
+                    frogNoteList[4].Play();
+                    break;
+
+                case 7:
+                    playerManager.GetComponent<PlayerManager>().frogLinePoints += playerManager.GetComponent<PlayerManager>().linePointMultiplier;
+                    frogNoteList[6].Play();
+                    break;
+
+                default:
+                    break;
+            } //depending on which beat we are on, a certain note plays
+        }
+
+        if (birdOutOfBasE)
+        {
+            switch (currentBeat)
+            {
+                case 1:
+                    playerManager.GetComponent<PlayerManager>().birdLinePoints += playerManager.GetComponent<PlayerManager>().linePointMultiplier;
+                    birdNoteList[0].Play();
+                    break;
+
+                case 3:
+                    playerManager.GetComponent<PlayerManager>().birdLinePoints += playerManager.GetComponent<PlayerManager>().linePointMultiplier;
+                    birdNoteList[2].Play();
+                    break;
+
+                case 5:
+                    playerManager.GetComponent<PlayerManager>().birdLinePoints += playerManager.GetComponent<PlayerManager>().linePointMultiplier;
+                    birdNoteList[4].Play();
+                    break;
+
+                case 7:
+                    playerManager.GetComponent<PlayerManager>().birdLinePoints += playerManager.GetComponent<PlayerManager>().linePointMultiplier;
+                    birdNoteList[6].Play();
+                    break;
+
+                default:
+                    break;
+            } //depending on which beat we are on, a certain note plays
+        }
+
 
         currentBeat++;
         beatCount++;
