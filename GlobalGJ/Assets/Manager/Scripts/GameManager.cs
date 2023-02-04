@@ -50,10 +50,12 @@ public class GameManager : MonoBehaviour
             {
                 UpdateState(GameState.MAINMENU);
             }
+            if (Input.GetKeyDown(KeyCode.Space))
+                UpdateState(GameState.SETUP);
         }
     }
 
-    void UpdateState(GameState _state)
+    public void UpdateState(GameState _state)
     {
         previousState = this.state;
         this.state = _state;
