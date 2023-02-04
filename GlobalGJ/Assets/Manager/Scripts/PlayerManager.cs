@@ -9,7 +9,7 @@ public class PlayerManager : MonoBehaviour
     public Transform[] playerSpawnPoints;
     public GameObject[] PlayerPrefabs;
 
-    public float birdLinePoints = 0, frogLinePoints = 0, linePointMultiplier = 0.2f;
+    public float birdLinePoints = 0, frogLinePoints = 0, linePointMultiplier = 0.2f, pointMultiplier;
     public bool frogInBase, birdInBase, frogCanDraw, birdCanDraw;
 
     private void Awake()
@@ -48,12 +48,12 @@ public class PlayerManager : MonoBehaviour
     {
         if (frogInBase)
         {
-            frogLinePoints += linePointMultiplier;
+            frogLinePoints += (linePointMultiplier * pointMultiplier)* Time.deltaTime;
         }
 
         if (birdInBase)
         {
-            birdLinePoints += linePointMultiplier;
+            birdLinePoints += (linePointMultiplier *pointMultiplier) * Time.deltaTime;
         }
     }
 }

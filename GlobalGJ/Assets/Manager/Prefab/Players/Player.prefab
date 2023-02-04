@@ -115,6 +115,9 @@ MonoBehaviour:
   lines:
   - {fileID: 9069554637138730957, guid: fd64dbc9cb649aa4b8e960e9fe00897a, type: 3}
   - {fileID: 7874640546775052311, guid: f49cc807aaf67344e8b8a1c1f5a38949, type: 3}
+  checkPoints:
+  - {fileID: 995472821139241373, guid: d20276f312e0b8f42890b5ed59bc1636, type: 3}
+  - {fileID: 4761475525368470840, guid: f53c62633f56774479339b7de508fe23, type: 3}
 --- !u!114 &1426492183493986381
 MonoBehaviour:
   m_ObjectHideFlags: 0

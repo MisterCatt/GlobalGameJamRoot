@@ -7,13 +7,14 @@ public class PlayerLine : MonoBehaviour
     bool isDrawing = false;
     Player pScript;
 
-    float drawDistance = 0,maxDistance;
+    float drawDistance = 0,maxDistance, magnitude;
 
     GameObject lineObject;
     [SerializeField]
-    GameObject[] lines;
+    GameObject[] lines, checkPoints;
 
     Vector3 startPos;
+    Vector3 point_C;
 
     private void Start()
     {
@@ -54,9 +55,7 @@ public class PlayerLine : MonoBehaviour
         {
             //Get the direction of the line
             Vector3 direction = transform.position - startPos;
-            float magnitude = Mathf.Sqrt(Mathf.Pow(transform.position.x - startPos.x, 2) + Mathf.Pow(transform.position.y - startPos.y, 2));
-
-            Debug.Log(magnitude);
+            magnitude = Mathf.Sqrt(Mathf.Pow(transform.position.x - startPos.x, 2) + Mathf.Pow(transform.position.y - startPos.y, 2));
 
             if (magnitude > maxDistance)
             {
@@ -64,18 +63,16 @@ public class PlayerLine : MonoBehaviour
             }
 
             //Get a new point at your distance from point A
-            Vector3 point_C = startPos + (direction.normalized * magnitude);
+            point_C = startPos + (direction.normalized * magnitude);
             //Draw the line
             Debug.DrawLine(startPos, point_C);
 
             if (_playerNumber == 0) {
                     lineObject.GetComponent<LineRenderer>().SetPosition(1, new Vector3(point_C.x, point_C.y, 0));
-                    PlayerManager.instance.birdLinePoints -= PlayerManager.instance.linePointMultiplier;
             }
             else
             {
                 lineObject.GetComponent<LineRenderer>().SetPosition(1, new Vector3(point_C.x, point_C.y, 0));
-                PlayerManager.instance.frogLinePoints -= PlayerManager.instance.linePointMultiplier;
             }
         }
 
@@ -83,11 +80,15 @@ public class PlayerLine : MonoBehaviour
         {
             if (_playerNumber == 0)
             {
-                PlayerManager.instance.birdLinePoints -= drawDistance;
+                PlayerManager.instance.birdLinePoints -= magnitude;
+
+                GameObject temp = Instantiate(checkPoints[0]);
+                temp.transform.parent = null;
+                temp.transform.position = point_C;
             }
             else
             {
-                PlayerManager.instance.frogLinePoints -= drawDistance;
+                PlayerManager.instance.frogLinePoints -= magnitude;
             }
 
             if(PlayerManager.instance.birdLinePoints < 0)

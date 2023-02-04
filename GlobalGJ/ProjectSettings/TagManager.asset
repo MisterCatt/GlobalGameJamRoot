@@ -8,6 +8,9 @@ TagManager:
   - FrogHome
   - FrogPlayer
   - BirdPlayer
+  - conductor
+  - BirdCheckPoint
+  - FrogCheckPoint
   layers:
   - Default
   - TransparentFX
