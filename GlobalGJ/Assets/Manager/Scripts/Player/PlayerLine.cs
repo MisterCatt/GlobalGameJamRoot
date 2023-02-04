@@ -18,7 +18,7 @@ public class PlayerLine : MonoBehaviour
 
     private void Start()
     {
-        pScript = GetComponent<Player>();
+         pScript = GetComponent<Player>();
     }
 
     private void Update()
@@ -86,6 +86,7 @@ public class PlayerLine : MonoBehaviour
             if (magnitude < 1)
             {
                 lineObject.SetActive(false);
+                
                 LineManager.instance.inactiveLines.Add(lineObject);
                 isDrawing = false;
                 return;

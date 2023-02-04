@@ -27,7 +27,12 @@ public class LineManager : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("purgeLines", 0.2f, 0.2f);
+        birdLines = new List<GameObject>();
+        frogLines = new List<GameObject>();
+
+        inactiveLines = new List<GameObject>();
+
+    InvokeRepeating("purgeLines", 0.2f, 0.2f);
     }
 
     private void FixedUpdate()
