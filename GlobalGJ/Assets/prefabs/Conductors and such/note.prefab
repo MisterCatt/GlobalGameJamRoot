@@ -157,11 +157,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0958b4d09035c164780f7e237b468855, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  note: {fileID: 0}
   tempoIncreaseAdjuster: 0
-  frogInBase: 0
-  birdInBase: 0
   playerManager: {fileID: 0}
+  frogNoteList: []
+  birdNoteList: []
   BPM: 170
   notePrefab: {fileID: 8389268777986201014}
   music: {fileID: 0}
