@@ -7,7 +7,7 @@ public class PlayerLine : MonoBehaviour
     bool isDrawing = false;
     Player pScript;
 
-    float drawDistance = 0,maxDistance, magnitude;
+    float maxDistance, magnitude;
 
     GameObject lineObject;
     [SerializeField]
