@@ -8,6 +8,9 @@ public class PlayerManager : MonoBehaviour
 
     public Transform[] playerSpawnPoints;
     public GameObject[] PlayerPrefabs;
+
+    public int birdLinePoints, frogLinePoints;
+
     private void Awake()
     {
         if (instance != null && instance != this)

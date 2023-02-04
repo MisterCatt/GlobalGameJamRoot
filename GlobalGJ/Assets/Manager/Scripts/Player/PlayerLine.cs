@@ -5,15 +5,20 @@ using UnityEngine;
 public class PlayerLine : MonoBehaviour
 {
     bool isDrawing = false;
-    public bool player2;
+    Player pScript;
 
     GameObject lineObject;
     [SerializeField]
     GameObject[] lines;
 
+    private void Start()
+    {
+        pScript = GetComponent<Player>();
+    }
+
     private void Update()
     {
-        if (!player2)
+        if (!pScript.player2)
             DrawLine(KeyCode.Comma, 0);
         else
             DrawLine(KeyCode.F, 1);

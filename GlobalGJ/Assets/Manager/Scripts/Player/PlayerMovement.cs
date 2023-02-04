@@ -4,39 +4,48 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    CharacterController cc;
+    Rigidbody2D body;
+    Player pScript;
 
-    public bool player2;
-    public float speed;
+    float horizontal;
+    float vertical;
+    float moveLimiter = 0.7f;
 
-    
+    public float runSpeed;
 
-    // Start is called before the first frame update
     void Start()
     {
-        cc = GetComponent<CharacterController>();
+        pScript = GetComponent<Player>();
+        body = GetComponent<Rigidbody2D>();
+
+        runSpeed = pScript.speed;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Move();
+        // Gives a value between -1 and 1
 
-        //cc.Move(transform.position * Time.deltaTime);
+        if (!pScript.player2)
+        {
+            horizontal = Input.GetAxisRaw("P1_X"); // -1 is left
+            vertical = Input.GetAxisRaw("P1_Y"); // -1 is down
+        }
+        else
+        {
+            horizontal = Input.GetAxisRaw("P2_X"); // -1 is left
+            vertical = Input.GetAxisRaw("P2_Y");
+        }
     }
 
-    void Move()
+    void FixedUpdate()
     {
-        if (Input.GetAxisRaw("P1_X") != 0 || Input.GetAxisRaw("P1_Y") != 0 || Input.GetAxisRaw("P2_X") != 0 || Input.GetAxisRaw("P2_Y") != 0)
+        if (horizontal != 0 && vertical != 0) // Check for diagonal movement
         {
-            Vector3 move;
-
-            if (!player2)
-                move = new Vector3(Input.GetAxisRaw("P1_X"), Input.GetAxisRaw("P1_Y"), 0);
-            else
-                move = new Vector3(Input.GetAxisRaw("P2_X"), Input.GetAxisRaw("P2_Y"), 0);
-
-            cc.Move(move * Time.deltaTime * speed);
+            // limit movement speed diagonally, so you move at 70% speed
+            horizontal *= moveLimiter;
+            vertical *= moveLimiter;
         }
+
+        body.velocity = new Vector2(horizontal * pScript.speed, vertical * pScript.speed);
     }
 }
