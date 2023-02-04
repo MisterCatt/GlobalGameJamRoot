@@ -7,9 +7,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 304961122437225202, guid: 57d6f618d5bfc2b4a9bc367900a23ee3, type: 3}
+      propertyPath: m_Height
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4072707904564578910, guid: 57d6f618d5bfc2b4a9bc367900a23ee3, type: 3}
       propertyPath: m_Name
       value: Frog_Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4072707904564578910, guid: 57d6f618d5bfc2b4a9bc367900a23ee3, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4424383932186400270, guid: 57d6f618d5bfc2b4a9bc367900a23ee3, type: 3}
       propertyPath: player2

@@ -9,7 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2131464038816296221, guid: 4fc776b57ed25f14b9d7bdfa7586a34b, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: Bird_Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2131464038816296221, guid: 4fc776b57ed25f14b9d7bdfa7586a34b, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5846998212710441783, guid: 4fc776b57ed25f14b9d7bdfa7586a34b, type: 3}
       propertyPath: m_RootOrder
