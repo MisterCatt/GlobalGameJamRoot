@@ -108,7 +108,7 @@ public class P_LineSpawning : MonoBehaviour
                     Triangle.tag = "Bird";
 
                     maxDistance = PlayerManager.instance.birdLinePoints;
-                        
+
                 }
                 selected = Instantiate(Point);
                 startPos = selected.transform.position = transform.position;
@@ -133,9 +133,9 @@ public class P_LineSpawning : MonoBehaviour
                 selected.transform.parent = Triangle.transform;
 
                 if (!p.player2)
-                    LineManager.instance.birdLines.Add(Triangle);
+                    LineManager.instance.birdLines.Add(selected);
                 else
-                    LineManager.instance.frogLines.Add(Triangle);
+                    LineManager.instance.frogLines.Add(selected);
             }
         }
         else
@@ -143,16 +143,48 @@ public class P_LineSpawning : MonoBehaviour
             if (placedPoints + 1 > 3 && !onSelected)
                 return;
 
-            if(placedPoints == 3)
+            if (placedPoints == 3)
             {
                 if (onSelected)
                 {
-                    lr.loop= true;
+                    lr.loop = true;
                     selected = null;
+                    isDrawing = false;
                     lr.positionCount--;
+                    placedPoints = 0;
+
+
+                    Transform temp = lr.gameObject.transform;
+
+                    temp = temp.parent;
+                    float distance;
+                    for (int i = 0; i < temp.childCount - 1; i++)
+                    {
+                        if (p.player2)
+                            for (int x = 0; x < LineManager.instance.birdLines.Count; x++)
+                            {
+                                distance = Vector3.Distance(LineManager.instance.birdLines[x].transform.position, temp.GetChild(i).position);
+                                if (distance < 1f)
+                                {
+                                    Destroy(LineManager.instance.birdLines[x].transform.parent.gameObject);
+                                    break;
+                                }
+                            }
+                        else
+                            for (int x = 0; x < LineManager.instance.frogLines.Count; x++)
+                            {
+                                distance = Vector3.Distance(LineManager.instance.frogLines[x].transform.position, temp.GetChild(i).position);
+                                if (distance < 1f)
+                                {
+                                    Destroy(LineManager.instance.frogLines[x].transform.parent.gameObject);
+                                    break;
+                                }
+                            }
+
+                    }
+
+
                     lr = null;
-                    isDrawing= false;
-                    placedPoints= 0;
                     return;
                 }
             }
@@ -174,8 +206,8 @@ public class P_LineSpawning : MonoBehaviour
                 lr.positionCount++;
                 temp.transform.parent = Triangle.transform;
 
-                if(!p.player2)
-                LineManager.instance.birdLines.Add(temp);
+                if (!p.player2)
+                    LineManager.instance.birdLines.Add(temp);
                 else
                     LineManager.instance.frogLines.Add(temp);
             }
@@ -298,6 +330,6 @@ public class P_LineSpawning : MonoBehaviour
         //    onSelected = false;
         //}
 
-        
+
     }
 }
