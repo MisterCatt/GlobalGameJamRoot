@@ -9,7 +9,6 @@ public class LineManager : MonoBehaviour
 
     public List<GameObject> inactiveLines;
 
-
     public static LineManager instance { get; private set; }
 
     private void Awake()
@@ -33,7 +32,7 @@ public class LineManager : MonoBehaviour
 
         inactiveLines = new List<GameObject>();
 
-        InvokeRepeating("purgeLines", 0.2f, 0.2f);
+    InvokeRepeating("purgeLines", 0.2f, 0.2f);
     }
 
     private void FixedUpdate()
@@ -46,28 +45,6 @@ public class LineManager : MonoBehaviour
         foreach(GameObject go in inactiveLines)
         {
             Destroy(go);
-        }
-
-        for (var i = birdLines.Count - 1; i > -1; i--)
-        {
-            if (birdLines[i] == null)
-                birdLines.RemoveAt(i);
-        }
-
-        for (var i = frogLines.Count - 1; i > -1; i--)
-        {
-            if (frogLines[i] == null)
-                frogLines.RemoveAt(i);
-        }
-
-        inactiveLines.Clear();
-    }
-
-    void CheckConnections()
-    {
-        for (int i = 0; i < birdLines.Count; i++)
-        {
-            
         }
     }
 

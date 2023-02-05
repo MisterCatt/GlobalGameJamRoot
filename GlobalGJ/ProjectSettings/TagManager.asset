@@ -12,10 +12,6 @@ TagManager:
   - BirdCheckPoint
   - FrogCheckPoint
   - HomeBase
-  - BirdWorldBase
-  - FrogWorldBase
-  - Frog
-  - Bird
   layers:
   - Default
   - TransparentFX

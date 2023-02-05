@@ -8,12 +8,10 @@ public class P_LineSpawning : MonoBehaviour
     GameObject selected;
     LineRenderer lr;
 
-    GameObject Triangle;
-
     public GameObject Point;
     bool isDrawing = false, onSelected = false;
 
-    Player p;
+    P_Base p;
 
     public int placedPoints = 0;
 
@@ -23,52 +21,30 @@ public class P_LineSpawning : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        p = GetComponent<Player>();
+        p = GetComponent<P_Base>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!p.player2)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (Input.GetKeyDown(KeyCode.Comma))
-            {
-                PlacePoint();
-            }
+            PlacePoint();
+        }
 
-            if (selected)
+        if (selected)
+        {
+            if (Input.GetKeyDown(KeyCode.C))
             {
-                if (Input.GetKeyDown(KeyCode.M))
+                selected = null;
+                if (isDrawing)
                 {
-                    selected = null;
-                    if (isDrawing)
-                    {
-                        isDrawing = false;
-                        lr.positionCount--;
-                    }
+                    isDrawing = false;
+                    lr.positionCount--;
                 }
             }
         }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                PlacePoint();
-            }
 
-            if (selected)
-            {
-                if (Input.GetKeyDown(KeyCode.R))
-                {
-                    selected = null;
-                    if (isDrawing)
-                    {
-                        isDrawing = false;
-                        lr.positionCount--;
-                    }
-                }
-            }
-        }
         if (isDrawing)
         {
             //Get the direction of the line
@@ -95,47 +71,13 @@ public class P_LineSpawning : MonoBehaviour
         {
             if (p.canDraw)
             {
-                if (p.player2)
-                {
-                    Triangle = new GameObject("FrogTriangle");
-                    Triangle.tag = "Frog";
-
-                    maxDistance = PlayerManager.instance.frogLinePoints;
-                }
-                else
-                {
-                    Triangle = new GameObject("BirdTriangle");
-                    Triangle.tag = "Bird";
-
-                    maxDistance = PlayerManager.instance.birdLinePoints;
-                        
-                }
                 selected = Instantiate(Point);
                 startPos = selected.transform.position = transform.position;
-
-                Vector3 direction = transform.position - startPos;
-                magnitude = Mathf.Sqrt(Mathf.Pow(transform.position.x - startPos.x, 2) + Mathf.Pow(transform.position.y - startPos.y, 2));
-
-                if (magnitude > maxDistance)
-                {
-                    magnitude = maxDistance;
-                }
-
-                //Get a new point at your distance from point A
-                point_C = startPos + (direction.normalized * magnitude);
-
-
                 lr = selected.GetComponent<LineRenderer>();
                 lr.positionCount++;
-                lr.SetPosition(lr.positionCount - 1, point_C);
+                lr.SetPosition(lr.positionCount - 1, transform.position);
                 lr.positionCount++;
                 isDrawing = true;
-                selected.transform.parent = Triangle.transform;
-
-                if (!p.player2)
-                    LineManager.instance.birdLines.Add(Triangle);
-                else
-                    LineManager.instance.frogLines.Add(Triangle);
             }
         }
         else
@@ -169,128 +111,64 @@ public class P_LineSpawning : MonoBehaviour
                 GameObject temp = Instantiate(Point);
                 temp.transform.position = new Vector3(point_C.x, point_C.y, 0);
                 startPos = temp.transform.position;
-
-                lr.SetPosition(lr.positionCount - 1, point_C);
+                lr.SetPosition(lr.positionCount - 1, transform.position);
                 lr.positionCount++;
-                temp.transform.parent = Triangle.transform;
-
-                if(!p.player2)
-                LineManager.instance.birdLines.Add(temp);
-                else
-                    LineManager.instance.frogLines.Add(temp);
             }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!p.player2)
+        if (!selected)
         {
-            if (!selected)
-            {
-                if (collision.tag == "BirdCheckPoint")
-                    selected = collision.gameObject;
-            }
-            else
-            {
-                if (collision.gameObject == selected.gameObject)
-                {
-                    onSelected = true;
-                }
-            }
-
-            if (collision.tag == "BirdHome")
-            {
-                p.inHomeBase = true;
-                p.canDraw = true;
-            }
-
-            if (collision.tag == "BirdWorldBase")
-            {
-                Debug.Log("KAW");
-
-                p.inHomeBase = true;
-            }
+            if(collision.tag == "BirdCheckPoint")
+                selected = collision.gameObject;
         }
         else
         {
-            if (!selected)
+            if (collision.gameObject == selected.gameObject)
             {
-                if (collision.tag == "FrogCheckPoint")
-                    selected = collision.gameObject;
-            }
-            else
-            {
-                if (collision.gameObject == selected.gameObject)
-                {
-                    onSelected = true;
-                }
-            }
-
-            if (collision.tag == "FrogHome")
-            {
-                p.inHomeBase = true;
-                p.canDraw = true;
-            }
-
-            if (collision.tag == "FrogWorldBase")
-            {
-                Debug.Log("KAW");
-
-                p.inHomeBase = true;
+                onSelected = true;
             }
         }
+
+        if(collision.tag == "BirdHome")
+        {
+            p.inHomeBase = true;
+            p.canDraw = true;
+        }
+
+        if(collision.tag == "BirdWorldBase")
+        {
+            Debug.Log("KAW");
+
+            p.inHomeBase = true;
+        }
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (!p.player2)
+        if (collision.tag == "BirdHome")
         {
-            if (collision.tag == "BirdHome")
-            {
-                p.inHomeBase = false;
-                p.canDraw = false;
-            }
+            p.inHomeBase = false;
+            p.canDraw = false;
+        }
 
-            if (selected && !isDrawing)
+        if (selected && !isDrawing)
+        {
+            if (collision.tag == "BirdCheckPoint")
             {
-                if (collision.tag == "BirdCheckPoint")
-                {
-                    selected = null;
-                    lr = null;
-                }
-            }
-
-            if (collision.tag == "BirdWorldBase")
-            {
-                Debug.Log("KAW?");
-
-                p.inHomeBase = false;
+                selected = null;
+                lr = null;
             }
         }
-        else
+
+        if (collision.tag == "BirdWorldBase")
         {
-            if (collision.tag == "FrogHome")
-            {
-                p.inHomeBase = false;
-                p.canDraw = false;
-            }
+            Debug.Log("KAW?");
 
-            if (selected && !isDrawing)
-            {
-                if (collision.tag == "FrogCheckPoint")
-                {
-                    selected = null;
-                    lr = null;
-                }
-            }
-
-            if (collision.tag == "FrogWorldBase")
-            {
-                Debug.Log("FROG?");
-
-                p.inHomeBase = false;
-            }
+            p.inHomeBase = false;
         }
 
         //if (collision.gameObject == selected.gameObject && Input.GetKey(KeyCode.C))
