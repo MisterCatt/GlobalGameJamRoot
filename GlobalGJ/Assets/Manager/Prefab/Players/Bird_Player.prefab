@@ -7,10 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1190150145489561858, guid: 4fc776b57ed25f14b9d7bdfa7586a34b, type: 3}
-      propertyPath: m_Controller
+    - target: {fileID: 89751988298611969, guid: 4fc776b57ed25f14b9d7bdfa7586a34b, type: 3}
+      propertyPath: Point
       value: 
-      objectReference: {fileID: 9100000, guid: a652fcf0469b4ca4285914829fd25729, type: 2}
+      objectReference: {fileID: 995472821139241373, guid: d20276f312e0b8f42890b5ed59bc1636, type: 3}
     - target: {fileID: 1426492183493986381, guid: 4fc776b57ed25f14b9d7bdfa7586a34b, type: 3}
       propertyPath: speed
       value: 5

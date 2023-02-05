@@ -28,75 +28,11 @@ public class PlayerMovement : MonoBehaviour
         {
             horizontal = Input.GetAxisRaw("P1_X");
             vertical = Input.GetAxisRaw("P1_Y");
-
-            if(horizontal != 0 || vertical != 0)
-            {
-                BeatScroller.birdWalking = true;
-
-                if (horizontal > 0)
-                {
-                    if(transform.localScale.x > 0)
-                    {
-                        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-                    }
-                    else
-                    {
-                        transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
-                    }
-                }
-                else
-                {
-                    if (transform.localScale.x < 0)
-                    {
-                        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-                    }
-                    else
-                    {
-                        transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
-                    }
-                }
-            }
-            else
-            {
-                BeatScroller.birdWalking = false;
-            }
         }
         else
         {
             horizontal = Input.GetAxisRaw("P2_X"); 
             vertical = Input.GetAxisRaw("P2_Y");
-
-            if (horizontal != 0 || vertical != 0)
-            {
-                BeatScroller.frogWalking = true;
-
-                if (horizontal > 0)
-                {
-                    if (transform.localScale.x > 0)
-                    {
-                        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-                    }
-                    else
-                    {
-                        transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
-                    }
-                }
-                else
-                {
-                    if (transform.localScale.x < 0)
-                    {
-                        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-                    }
-                    else
-                    {
-                        transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
-                    }
-                }
-            }
-            else
-            {
-                BeatScroller.frogWalking = false;
-            }
         }
     }
 
