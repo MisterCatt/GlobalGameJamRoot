@@ -91,6 +91,38 @@ public class BeatScroller : MonoBehaviour
                     frogNoteList[7].Play();
                     break;
 
+                case 9:
+                    frogNoteList[8].Play();
+                    break;
+
+                case 10:
+                    frogNoteList[9].Play();
+                    break;
+
+                case 11:
+                    frogNoteList[10].Play();
+                    break;
+
+                case 12:
+                    frogNoteList[11].Play();
+                    break;
+
+                case 13:
+                    frogNoteList[12].Play();
+                    break;
+
+                case 14:
+                    frogNoteList[13].Play();
+                    break;
+
+                case 15:
+                    frogNoteList[14].Play();
+                    break;
+
+                case 16:
+                    frogNoteList[15].Play();
+                    break;
+
                 default:
                     break;
             } //depending on which beat we are on, a certain note plays
@@ -133,6 +165,38 @@ public class BeatScroller : MonoBehaviour
                     birdNoteList[7].Play();
                     break;
 
+                case 9:
+                    birdNoteList[8].Play();
+                    break;
+
+                case 10:
+                    birdNoteList[9].Play();
+                    break;
+
+                case 11:
+                    birdNoteList[10].Play();
+                    break;
+
+                case 12:
+                    birdNoteList[11].Play();
+                    break;
+
+                case 13:
+                    birdNoteList[12].Play();
+                    break;
+
+                case 14:
+                    birdNoteList[13].Play();
+                    break;
+
+                case 15:
+                    birdNoteList[14].Play();
+                    break;
+
+                case 16:
+                    birdNoteList[15].Play();
+                    break;
+
                 default:
                     break;
             } //depending on which beat we are on, a certain note plays
@@ -143,23 +207,43 @@ public class BeatScroller : MonoBehaviour
             switch (currentBeat)
             {
                 case 1:
-                    playerManager.GetComponent<PlayerManager>().frogLinePoints += playerManager.GetComponent<PlayerManager>().linePointMultiplier;
+                    playerManager.GetComponent<PlayerManager>().birdLinePoints += playerManager.GetComponent<PlayerManager>().linePointMultiplier;
                     frogNoteList[0].Play();
                     break;
 
                 case 3:
-                    playerManager.GetComponent<PlayerManager>().frogLinePoints += playerManager.GetComponent<PlayerManager>().linePointMultiplier;
+                    playerManager.GetComponent<PlayerManager>().birdLinePoints += playerManager.GetComponent<PlayerManager>().linePointMultiplier;
                     frogNoteList[2].Play();
                     break;
 
                 case 5:
-                    playerManager.GetComponent<PlayerManager>().frogLinePoints += playerManager.GetComponent<PlayerManager>().linePointMultiplier;
+                    playerManager.GetComponent<PlayerManager>().birdLinePoints += playerManager.GetComponent<PlayerManager>().linePointMultiplier;
                     frogNoteList[4].Play();
                     break;
 
                 case 7:
-                    playerManager.GetComponent<PlayerManager>().frogLinePoints += playerManager.GetComponent<PlayerManager>().linePointMultiplier;
+                    playerManager.GetComponent<PlayerManager>().birdLinePoints += playerManager.GetComponent<PlayerManager>().linePointMultiplier;
                     frogNoteList[6].Play();
+                    break;
+
+                case 9:
+                    playerManager.GetComponent<PlayerManager>().birdLinePoints += playerManager.GetComponent<PlayerManager>().linePointMultiplier;
+                    frogNoteList[8].Play();
+                    break;
+
+                case 11:
+                    playerManager.GetComponent<PlayerManager>().birdLinePoints += playerManager.GetComponent<PlayerManager>().linePointMultiplier;
+                    frogNoteList[10].Play();
+                    break;
+
+                case 13:
+                    playerManager.GetComponent<PlayerManager>().birdLinePoints += playerManager.GetComponent<PlayerManager>().linePointMultiplier;
+                    frogNoteList[12].Play();
+                    break;
+
+                case 15:
+                    playerManager.GetComponent<PlayerManager>().birdLinePoints += playerManager.GetComponent<PlayerManager>().linePointMultiplier;
+                    frogNoteList[14].Play();
                     break;
 
                 default:
@@ -191,6 +275,26 @@ public class BeatScroller : MonoBehaviour
                     birdNoteList[6].Play();
                     break;
 
+                case 9:
+                    playerManager.GetComponent<PlayerManager>().birdLinePoints += playerManager.GetComponent<PlayerManager>().linePointMultiplier;
+                    birdNoteList[8].Play();
+                    break;
+
+                case 11:
+                    playerManager.GetComponent<PlayerManager>().birdLinePoints += playerManager.GetComponent<PlayerManager>().linePointMultiplier;
+                    birdNoteList[10].Play();
+                    break;
+
+                case 13:
+                    playerManager.GetComponent<PlayerManager>().birdLinePoints += playerManager.GetComponent<PlayerManager>().linePointMultiplier;
+                    birdNoteList[12].Play();
+                    break;
+
+                case 15:
+                    playerManager.GetComponent<PlayerManager>().birdLinePoints += playerManager.GetComponent<PlayerManager>().linePointMultiplier;
+                    birdNoteList[14].Play();
+                    break;
+
                 default:
                     break;
             } //depending on which beat we are on, a certain note plays
@@ -201,7 +305,7 @@ public class BeatScroller : MonoBehaviour
         beatCount++;
 
         //increase beat and song speed after 124 beats / 45-ish seconds
-        if (beatCount >= 70)
+        if (beatCount >= 90)
         {
             BPM *= tempoIncreaseAdjuster;
             music.pitch *= tempoIncreaseAdjuster;
@@ -216,7 +320,7 @@ public class BeatScroller : MonoBehaviour
             }
         }
 
-        if(currentBeat > 8)
+        if(currentBeat > 16)
         {
             currentBeat = 1;
         }
