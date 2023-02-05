@@ -76,12 +76,12 @@ public class P_LineSpawning : MonoBehaviour
                 if (p.player2)
                 {
                     Triangle = new GameObject("FrogTriangle");
-                    transform.tag = "";
+                    Triangle.tag = "Frog";
                 }
                 else
                 {
                     Triangle = new GameObject("BirdTriangle");
-                    transform.tag = "";
+                    Triangle.tag = "Bird";
                 }
                 selected = Instantiate(Point);
                 startPos = selected.transform.position = transform.position;
@@ -133,32 +133,62 @@ public class P_LineSpawning : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!selected)
+        if (!p.player2)
         {
-            if(collision.tag == "BirdCheckPoint")
-                selected = collision.gameObject;
+            if (!selected)
+            {
+                if (collision.tag == "BirdCheckPoint")
+                    selected = collision.gameObject;
+            }
+            else
+            {
+                if (collision.gameObject == selected.gameObject)
+                {
+                    onSelected = true;
+                }
+            }
+
+            if (collision.tag == "BirdHome")
+            {
+                p.inHomeBase = true;
+                p.canDraw = true;
+            }
+
+            if (collision.tag == "BirdWorldBase")
+            {
+                Debug.Log("KAW");
+
+                p.inHomeBase = true;
+            }
         }
         else
         {
-            if (collision.gameObject == selected.gameObject)
+            if (!selected)
             {
-                onSelected = true;
+                if (collision.tag == "FrogCheckPoint")
+                    selected = collision.gameObject;
+            }
+            else
+            {
+                if (collision.gameObject == selected.gameObject)
+                {
+                    onSelected = true;
+                }
+            }
+
+            if (collision.tag == "FrogHome")
+            {
+                p.inHomeBase = true;
+                p.canDraw = true;
+            }
+
+            if (collision.tag == "FrogWorldBase")
+            {
+                Debug.Log("KAW");
+
+                p.inHomeBase = true;
             }
         }
-
-        if(collision.tag == "BirdHome")
-        {
-            p.inHomeBase = true;
-            p.canDraw = true;
-        }
-
-        if(collision.tag == "BirdWorldBase")
-        {
-            Debug.Log("KAW");
-
-            p.inHomeBase = true;
-        }
-        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -206,7 +236,7 @@ public class P_LineSpawning : MonoBehaviour
 
             if (collision.tag == "FrogWorldBase")
             {
-                Debug.Log("KAW?");
+                Debug.Log("FROG?");
 
                 p.inHomeBase = false;
             }

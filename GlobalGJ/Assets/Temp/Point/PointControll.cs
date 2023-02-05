@@ -26,10 +26,10 @@ public class PointControll : MonoBehaviour
         
         triangle = new GameObject();
         triangle.name = "HitBox";
-        if (transform.parent.tag == "BirdCheckPoint")
-            transform.tag = "BirdWorldBase";
-        else if (transform.parent.tag == "FrogCheckPoint")
-            transform.tag = "FrogWorldBase";
+        if (transform.parent.tag == "Bird")
+            triangle.tag = "BirdWorldBase";
+        else if (transform.parent.tag == "Frog")
+            triangle.tag = "FrogWorldBase";
         triangle.transform.position = Vector3.zero;
         PolygonCollider2D collider = triangle.AddComponent<PolygonCollider2D>();
         collider.isTrigger = true;
