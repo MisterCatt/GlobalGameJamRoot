@@ -469,6 +469,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FrogHome
       objectReference: {fileID: 0}
+    - target: {fileID: 2570090725882055051, guid: 9afdcbeeab167da4daa165293efb042c, type: 3}
+      propertyPath: m_TagString
+      value: BirdHome
+      objectReference: {fileID: 0}
     - target: {fileID: 4209257132472888479, guid: 9afdcbeeab167da4daa165293efb042c, type: 3}
       propertyPath: m_IsTrigger
       value: 0

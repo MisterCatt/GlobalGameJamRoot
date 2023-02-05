@@ -23,13 +23,18 @@ public class PointControll : MonoBehaviour
 
     void SpawnBox()
     {
+        
         triangle = new GameObject();
         triangle.name = "HitBox";
+        if (transform.parent.tag == "BirdCheckPoint")
+            transform.tag = "BirdWorldBase";
+        else if (transform.parent.tag == "FrogCheckPoint")
+            transform.tag = "FrogWorldBase";
         triangle.transform.position = Vector3.zero;
-        triangle.tag = "BirdWorldBase";
         PolygonCollider2D collider = triangle.AddComponent<PolygonCollider2D>();
-        collider.isTrigger= true;
+        collider.isTrigger = true;
         
         collider.points = new UnityEngine.Vector2[4] {new Vector2(lr.GetPosition(0).x, lr.GetPosition(0).y), new Vector2(lr.GetPosition(1).x, lr.GetPosition(1).y), new Vector2(lr.GetPosition(2).x, lr.GetPosition(2).y), new Vector2(lr.GetPosition(0).x, lr.GetPosition(0).y) };
+        triangle.transform.parent = transform.parent;
     }
 }

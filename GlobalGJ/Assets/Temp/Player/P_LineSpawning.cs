@@ -8,10 +8,12 @@ public class P_LineSpawning : MonoBehaviour
     GameObject selected;
     LineRenderer lr;
 
+    GameObject Triangle;
+
     public GameObject Point;
     bool isDrawing = false, onSelected = false;
 
-    P_Base p;
+    Player p;
 
     public int placedPoints = 0;
 
@@ -21,13 +23,13 @@ public class P_LineSpawning : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        p = GetComponent<P_Base>();
+        p = GetComponent<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.M))
         {
             PlacePoint();
         }
@@ -71,6 +73,16 @@ public class P_LineSpawning : MonoBehaviour
         {
             if (p.canDraw)
             {
+                if (p.player2)
+                {
+                    Triangle = new GameObject("FrogTriangle");
+                    transform.tag = "";
+                }
+                else
+                {
+                    Triangle = new GameObject("BirdTriangle");
+                    transform.tag = "";
+                }
                 selected = Instantiate(Point);
                 startPos = selected.transform.position = transform.position;
                 lr = selected.GetComponent<LineRenderer>();
@@ -78,6 +90,7 @@ public class P_LineSpawning : MonoBehaviour
                 lr.SetPosition(lr.positionCount - 1, transform.position);
                 lr.positionCount++;
                 isDrawing = true;
+                selected.transform.parent = Triangle.transform;
             }
         }
         else
@@ -113,6 +126,7 @@ public class P_LineSpawning : MonoBehaviour
                 startPos = temp.transform.position;
                 lr.SetPosition(lr.positionCount - 1, transform.position);
                 lr.positionCount++;
+                temp.transform.parent = Triangle.transform;
             }
         }
     }
@@ -149,28 +163,54 @@ public class P_LineSpawning : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "BirdHome")
+        if (!p.player2)
         {
-            p.inHomeBase = false;
-            p.canDraw = false;
-        }
-
-        if (selected && !isDrawing)
-        {
-            if (collision.tag == "BirdCheckPoint")
+            if (collision.tag == "BirdHome")
             {
-                selected = null;
-                lr = null;
+                p.inHomeBase = false;
+                p.canDraw = false;
+            }
+
+            if (selected && !isDrawing)
+            {
+                if (collision.tag == "BirdCheckPoint")
+                {
+                    selected = null;
+                    lr = null;
+                }
+            }
+
+            if (collision.tag == "BirdWorldBase")
+            {
+                Debug.Log("KAW?");
+
+                p.inHomeBase = false;
             }
         }
-
-        if (collision.tag == "BirdWorldBase")
+        else
         {
-            Debug.Log("KAW?");
+            if (collision.tag == "FrogHome")
+            {
+                p.inHomeBase = false;
+                p.canDraw = false;
+            }
 
-            p.inHomeBase = false;
+            if (selected && !isDrawing)
+            {
+                if (collision.tag == "FrogCheckPoint")
+                {
+                    selected = null;
+                    lr = null;
+                }
+            }
+
+            if (collision.tag == "FrogWorldBase")
+            {
+                Debug.Log("KAW?");
+
+                p.inHomeBase = false;
+            }
         }
-
         //if (collision.gameObject == selected.gameObject && Input.GetKey(KeyCode.C))
         //{
         //    onSelected = false;
