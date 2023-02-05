@@ -43,17 +43,21 @@ PrefabInstance:
       propertyPath: runSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5976393220971939609, guid: 57d6f618d5bfc2b4a9bc367900a23ee3, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4ae8f341a641fed48b37a7c0bf1dcd74, type: 2}
     - target: {fileID: 6166077499191128409, guid: 57d6f618d5bfc2b4a9bc367900a23ee3, type: 3}
       propertyPath: m_Color.b
-      value: 0.13061273
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6166077499191128409, guid: 57d6f618d5bfc2b4a9bc367900a23ee3, type: 3}
       propertyPath: m_Color.g
-      value: 0.3962264
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6166077499191128409, guid: 57d6f618d5bfc2b4a9bc367900a23ee3, type: 3}
       propertyPath: m_Color.r
-      value: 0.07999287
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8373850765347144820, guid: 57d6f618d5bfc2b4a9bc367900a23ee3, type: 3}
       propertyPath: m_RootOrder

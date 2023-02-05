@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8050149432522617415}
   - component: {fileID: 1981881520350084677}
   - component: {fileID: 89751988298611969}
+  - component: {fileID: 8638248209321336922}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -187,3 +188,22 @@ MonoBehaviour:
   selected: {fileID: 0}
   Point: {fileID: 4197333493206941301, guid: c59fee5b8dba5414388f62255dab638e, type: 3}
   placedPoints: 0
+--- !u!95 &8638248209321336922
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131464038816296221}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
