@@ -415,7 +415,7 @@ PrefabInstance:
     - target: {fileID: 5451463572700935596, guid: a73d2cb6ee8785347841eeb44923b607, type: 3}
       propertyPath: playerManager
       value: 
-      objectReference: {fileID: 7933657950388262867, guid: be16b530cd281c64bb2fe97e1f0d2e0c, type: 3}
+      objectReference: {fileID: 730676404}
     - target: {fileID: 5451463572700935596, guid: a73d2cb6ee8785347841eeb44923b607, type: 3}
       propertyPath: tempoIncreaseAdjuster
       value: 1.001
@@ -625,6 +625,11 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 6506395591223166443, guid: a73d2cb6ee8785347841eeb44923b607, type: 3}
   m_PrefabInstance: {fileID: 614160164}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &730676404 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7933657950388262867, guid: be16b530cd281c64bb2fe97e1f0d2e0c, type: 3}
+  m_PrefabInstance: {fileID: 882417815}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &828040885
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,7 +723,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1053130970868534583, guid: be16b530cd281c64bb2fe97e1f0d2e0c, type: 3}
       propertyPath: linePointMultiplier
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1053130970868534583, guid: be16b530cd281c64bb2fe97e1f0d2e0c, type: 3}
       propertyPath: PlayerPrefabs.Array.data[0]
