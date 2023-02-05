@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -85,12 +86,18 @@ public class GameManager : MonoBehaviour
             case GameState.PLAY:
                 break;
             case GameState.GAMEOVER:
+                SceneManager.LoadScene("EndScreen");
                 break;
             default:
                 break;
                   
         }
         OnStateChange?.Invoke(_state);
+    }
+
+    public void pressStart()
+    {
+        SceneManager.LoadScene("LevelDesign");
     }
 
     GameState GetCurrentState()

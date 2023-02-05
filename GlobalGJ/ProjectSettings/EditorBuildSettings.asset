@@ -6,6 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/LevelDesign.unity
+    guid: 0af277079c8667e4eb3b62a3e972d1f1
+  - enabled: 0
+    path: Assets/Scenes/StartMenu.unity
+    guid: a6970381a98f9fa49bb4527dd7d3dc48
+  - enabled: 1
+    path: Assets/Scenes/AudioTesting.unity
+    guid: f411613ed739c4c488cadb6d7636b4be
+  - enabled: 1
     path: Assets/Scenes/Daniels scene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/DistanceShit.unity
+    guid: 4f69fb41aed0efb4ab7b73a8b808363c
+  - enabled: 1
+    path: Assets/Scenes/EndScreen.unity
+    guid: 9b98181de7f41af499c17b421162bd91
+  - enabled: 1
+    path: Assets/Scenes/TestScene.unity
+    guid: 368f636e2a1091240836ad8b8a7b8ce3
   m_configObjects: {}
