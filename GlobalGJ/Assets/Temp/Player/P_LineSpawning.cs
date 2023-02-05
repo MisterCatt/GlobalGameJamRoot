@@ -65,6 +65,8 @@ public class P_LineSpawning : MonoBehaviour
 
             placedPoints = lr.positionCount - 1;
         }
+
+        Debug.Log(point_C);
     }
 
     void PlacePoint()
@@ -77,17 +79,35 @@ public class P_LineSpawning : MonoBehaviour
                 {
                     Triangle = new GameObject("FrogTriangle");
                     Triangle.tag = "Frog";
+
+                    maxDistance = PlayerManager.instance.frogLinePoints;
                 }
                 else
                 {
                     Triangle = new GameObject("BirdTriangle");
                     Triangle.tag = "Bird";
+
+                    maxDistance = PlayerManager.instance.birdLinePoints;
+                        
                 }
                 selected = Instantiate(Point);
                 startPos = selected.transform.position = transform.position;
+
+                Vector3 direction = transform.position - startPos;
+                magnitude = Mathf.Sqrt(Mathf.Pow(transform.position.x - startPos.x, 2) + Mathf.Pow(transform.position.y - startPos.y, 2));
+
+                if (magnitude > maxDistance)
+                {
+                    magnitude = maxDistance;
+                }
+
+                //Get a new point at your distance from point A
+                point_C = startPos + (direction.normalized * magnitude);
+
+
                 lr = selected.GetComponent<LineRenderer>();
                 lr.positionCount++;
-                lr.SetPosition(lr.positionCount - 1, transform.position);
+                lr.SetPosition(lr.positionCount - 1, point_C);
                 lr.positionCount++;
                 isDrawing = true;
                 selected.transform.parent = Triangle.transform;
@@ -124,7 +144,8 @@ public class P_LineSpawning : MonoBehaviour
                 GameObject temp = Instantiate(Point);
                 temp.transform.position = new Vector3(point_C.x, point_C.y, 0);
                 startPos = temp.transform.position;
-                lr.SetPosition(lr.positionCount - 1, transform.position);
+
+                lr.SetPosition(lr.positionCount - 1, point_C);
                 lr.positionCount++;
                 temp.transform.parent = Triangle.transform;
             }
@@ -241,6 +262,7 @@ public class P_LineSpawning : MonoBehaviour
                 p.inHomeBase = false;
             }
         }
+
         //if (collision.gameObject == selected.gameObject && Input.GetKey(KeyCode.C))
         //{
         //    onSelected = false;
