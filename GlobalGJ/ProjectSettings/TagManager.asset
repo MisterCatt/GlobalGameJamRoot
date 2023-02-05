@@ -11,6 +11,7 @@ TagManager:
   - conductor
   - BirdCheckPoint
   - FrogCheckPoint
+  - HomeBase
   layers:
   - Default
   - TransparentFX
