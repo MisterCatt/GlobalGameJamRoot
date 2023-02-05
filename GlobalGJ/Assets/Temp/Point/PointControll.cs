@@ -25,6 +25,7 @@ public class PointControll : MonoBehaviour
     {
         
         triangle = new GameObject();
+        triangle.AddComponent<DumbScript>();
         triangle.name = "HitBox";
         if (transform.parent.tag == "Bird")
             triangle.tag = "BirdWorldBase";

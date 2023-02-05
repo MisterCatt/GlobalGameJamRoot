@@ -29,24 +29,46 @@ public class P_LineSpawning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (!p.player2)
         {
-            PlacePoint();
-        }
-
-        if (selected)
-        {
-            if (Input.GetKeyDown(KeyCode.C))
+            if (Input.GetKeyDown(KeyCode.Comma))
             {
-                selected = null;
-                if (isDrawing)
+                PlacePoint();
+            }
+
+            if (selected)
+            {
+                if (Input.GetKeyDown(KeyCode.M))
                 {
-                    isDrawing = false;
-                    lr.positionCount--;
+                    selected = null;
+                    if (isDrawing)
+                    {
+                        isDrawing = false;
+                        lr.positionCount--;
+                    }
                 }
             }
         }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                PlacePoint();
+            }
 
+            if (selected)
+            {
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    selected = null;
+                    if (isDrawing)
+                    {
+                        isDrawing = false;
+                        lr.positionCount--;
+                    }
+                }
+            }
+        }
         if (isDrawing)
         {
             //Get the direction of the line
@@ -65,8 +87,6 @@ public class P_LineSpawning : MonoBehaviour
 
             placedPoints = lr.positionCount - 1;
         }
-
-        Debug.Log(point_C);
     }
 
     void PlacePoint()
@@ -111,6 +131,11 @@ public class P_LineSpawning : MonoBehaviour
                 lr.positionCount++;
                 isDrawing = true;
                 selected.transform.parent = Triangle.transform;
+
+                if (!p.player2)
+                    LineManager.instance.birdLines.Add(Triangle);
+                else
+                    LineManager.instance.frogLines.Add(Triangle);
             }
         }
         else
@@ -148,6 +173,11 @@ public class P_LineSpawning : MonoBehaviour
                 lr.SetPosition(lr.positionCount - 1, point_C);
                 lr.positionCount++;
                 temp.transform.parent = Triangle.transform;
+
+                if(!p.player2)
+                LineManager.instance.birdLines.Add(temp);
+                else
+                    LineManager.instance.frogLines.Add(temp);
             }
         }
     }
