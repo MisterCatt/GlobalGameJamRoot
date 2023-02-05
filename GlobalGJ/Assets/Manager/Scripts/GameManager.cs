@@ -33,8 +33,12 @@ public class GameManager : MonoBehaviour
             GameObject LM = new GameObject("LineManager");
             LM.AddComponent<LineManager>();
         }
-
-            UpdateState(GameState.MAINMENU);
+        if (!PlayerManager.instance)
+        {
+            GameObject PM = new GameObject("PlayerManager");
+            PM.AddComponent<PlayerManager>();
+        }
+        UpdateState(GameState.MAINMENU);
     }
 
     private void Update()
