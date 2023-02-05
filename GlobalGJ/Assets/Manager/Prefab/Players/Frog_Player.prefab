@@ -11,10 +11,6 @@ PrefabInstance:
       propertyPath: m_Height
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 2607458805364628034, guid: 57d6f618d5bfc2b4a9bc367900a23ee3, type: 3}
-      propertyPath: Point
-      value: 
-      objectReference: {fileID: 4761475525368470840, guid: f53c62633f56774479339b7de508fe23, type: 3}
     - target: {fileID: 3082415888663163849, guid: 57d6f618d5bfc2b4a9bc367900a23ee3, type: 3}
       propertyPath: player2
       value: 1
