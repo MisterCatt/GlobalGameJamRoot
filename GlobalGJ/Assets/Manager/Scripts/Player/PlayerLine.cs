@@ -7,7 +7,7 @@ public class PlayerLine : MonoBehaviour
     bool isDrawing = false;
     Player pScript;
 
-    float drawDistance = 0,maxDistance, magnitude;
+    float maxDistance, magnitude;
 
     GameObject lineObject;
     [SerializeField]
@@ -83,6 +83,9 @@ public class PlayerLine : MonoBehaviour
 
         if (Input.GetKeyUp(keyCode))
         {
+            if (!lineObject)
+                return;
+
             if (magnitude < 1)
             {
                 lineObject.SetActive(false);

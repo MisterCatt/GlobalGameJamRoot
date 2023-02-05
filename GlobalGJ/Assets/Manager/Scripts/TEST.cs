@@ -5,113 +5,32 @@ using UnityEngine;
 public class TEST : MonoBehaviour
 {
 
-    void LOGTHIS()
-    {
-        Debug.Log("MAIN MENU");
-    }
-
-    bool isDrawing = false;
-    Vector3 startPos, drawPos;
-
-    GameObject lineObject;
-
-    void GameManagerOnStateChange(GameState _state)
-    {
-        switch (_state)
-        {
-            case GameState.MAINMENU:
-                Debug.Log("MAIN MENU");
-                break;
-            case GameState.PAUSED:
-                Debug.Log("PAUSED");
-                break;
-            case GameState.UNPAUSE:
-                Debug.Log("UNPAUSE");
-                break;
-            case GameState.SETUP:
-                Debug.Log("SETUP");
-                break;
-            case GameState.PLAY:
-                Debug.Log("PLAY");
-                break;
-            case GameState.GAMEOVER:
-                Debug.Log("GAME OVER");
-                break;
-            default:
-                break;
-        }
-
-    }
-
-    private void Awake()
-    {
-        GameManager.OnStateChange += GameManagerOnStateChange;
-        
-    }
-
-    private void OnDestroy()
-    {
-        GameManager.OnStateChange -= GameManagerOnStateChange;
-    }
+    LineRenderer lineRenderer;
+    List<Vector3> positions;     
+    
 
     private void Start()
     {
-        lineObject = GameObject.Find("LineDrawer");
+        lineRenderer = GetComponent<LineRenderer>();
+        positions = new List<Vector3>();
+        positions.Add(Vector3.zero);
+
     }
 
     private void Update()
     {
+        Vector3 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject line = new GameObject();
-            line.AddComponent<LineRenderer>();
-
-            startPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
+            positions.Add(new Vector3(mp.x,mp.y,0));
             
-            
-            line.GetComponent<LineRenderer>().SetPosition(0, new Vector3 (startPos.x, startPos.y, 0));
-            lineObject = line;
-            isDrawing = true;
-        }
+            lineRenderer.positionCount++;
+            lineRenderer.SetPositions(positions.ToArray());
 
-        if (isDrawing)
-        {
-            drawPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            {
-                Debug.Log(drawPos.x);
-                Debug.Log(drawPos.y);
-            }
-
-            float magnitude = Mathf.Sqrt(Mathf.Pow(drawPos.x - startPos.x, 2) + Mathf.Pow(drawPos.y - startPos.y, 2));
-            Vector2 norm = drawPos.normalized;
-
-            Debug.Log(magnitude);
-
-
-            //Get the direction of the line
-            Vector3 direction = drawPos - startPos;
-            //Get a new point at your distance from point A
-            if(magnitude > 10)
-                magnitude = 10;
-            Vector3 point_C = startPos + (direction.normalized * magnitude);
-            //Draw the line
-            Debug.DrawLine(startPos, point_C);
-
-            lineObject.GetComponent<LineRenderer>().SetPosition(1, new Vector3(point_C.x,point_C.y,0));
-
-            //if(magnitude < 3)
-            //lineObject.GetComponent<LineRenderer>().SetPosition(1, new Vector3(drawPos.x, drawPos.y, 0));
-        }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            isDrawing = false;
+            Debug.Log("did it");
         }
     }
 
-    Vector3 DirectionToPoint(Vector3 startingVector, Vector3 endVector)
-    {
-        return -(startingVector - endVector).normalized;
-    }
+    
 }
